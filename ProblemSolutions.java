@@ -68,7 +68,7 @@ public class ProblemSolutions {
 
         // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
     
-        // Initialize max heap prioerity queue
+        // Initialize max heap prioerity queue, reversed as default is min heap
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
         // Loop through boulders and add them into the heap 
@@ -76,16 +76,23 @@ public class ProblemSolutions {
             maxHeap.add(boulder);
         }
 
+        // While loop to ensure there's always at least 2 elements to comapre
         while (maxHeap.size() > 1)
+
+            // Initialize first and second elements of priority queue
             int heaviest = maxHeap.poll();
             int secondHeaviest = maxHeap.poll();
 
+            // Designate new heaviest boulder as the difference between the two
             if (heaviest != secondHeaviest) {
                 maxHeap.add(heaviest - secondHeaviest);
             }
 
+        // If last two elements are equal and destroy each other, return 0
         if (maxHeap.isEmpty()) {
             return 0;
+        
+        // Return the last element in the queue after loop is exited
         } else {
             return maxHeap.peek();
         }
