@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Kendall Savino / COMP 272 002
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -152,8 +152,20 @@ class PriorityQueue<E, P> {
     public Node add(E e, P priority) {
 
         // YOUR CODE GOES HERE
-        return null;
-    }
+
+        // Initialize new node with element and priortiy
+        Node addedNode = new Node(e, priority, tree.size());
+
+        // Add node to the end of the list
+        tree.add(addedNode);
+        
+        // Reheap the tree by pulling the node up
+        pullUp(tree.size() - 1);
+
+        // Return newly inserted element
+        return addedNode;
+
+    } // method add
 
 
     /**
@@ -169,8 +181,23 @@ class PriorityQueue<E, P> {
     public boolean contains(E e) {
 
         // ADD YOUR CODE HERE
-        return false;
-    }
+
+        // Initialize boolean variable assuming element is not in queue
+        boolean isFound = false;
+
+        // Loop through nodes in tree
+        for (Node node : tree) {
+
+            // Update isFound to true if value of node equals target element
+            if (node.value.equals(e)) {
+                isFound = true;
+            }
+        }
+
+        // Return value of isFound (true or false)
+        return isFound;
+
+    } // method contains
 
 
     /**

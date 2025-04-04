@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Kendall Savino / COMP 272 002
  *
  *   This java file contains the problem solutions for the methods lastBoulder,
  *   showDuplicates, and pair methods. You should utilize the Java Collection
@@ -9,6 +9,7 @@
  *
  ********************************************************************/
 
+import java.security.cert.X509CRLSelector;
 import java.util.*;
 import java.util.PriorityQueue;
 
@@ -63,13 +64,33 @@ public class ProblemSolutions {
      * returning the 0 if queue is empty else return pq.peek().
      */
 
-  public static int lastBoulder(int[] boulders) {
+    public static int lastBoulder(int[] boulders) {
 
-      //
-      // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
-      //
-      return -1;
-  }
+        // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
+    
+        // Initialize max heap prioerity queue
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+        // Loop through boulders and add them into the heap 
+        for (int boulder : boulders) {
+            maxHeap.add(boulder);
+        }
+
+        while (maxHeap.size() > 1)
+            int heaviest = maxHeap.poll();
+            int secondHeaviest = maxHeap.poll();
+
+            if (heaviest != secondHeaviest) {
+                maxHeap.add(heaviest - secondHeaviest);
+            }
+
+        if (maxHeap.isEmpty()) {
+            return 0;
+        } else {
+            return maxHeap.peek();
+        }
+
+    } // method lastBoulder
 
 
     /**
@@ -91,9 +112,8 @@ public class ProblemSolutions {
 
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
 
-        //
         //  YOUR CODE GOES HERE
-        //
+
         return new ArrayList<>();  // Make sure result is sorted in ascending order
 
     }
@@ -131,9 +151,8 @@ public class ProblemSolutions {
 
     public static ArrayList<String> pair(int[] input, int k) {
 
-        //
         //  YOUR CODE GOES HERE
-        //
+
         return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
     }
 }
