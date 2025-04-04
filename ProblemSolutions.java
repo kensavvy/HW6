@@ -146,7 +146,7 @@
 
         return duplicates;  // Make sure result is sorted in ascending order
  
-     }
+     } // method showDuplicates
  
  
      /**
@@ -182,7 +182,46 @@
      public static ArrayList<String> pair(int[] input, int k) {
  
         //  YOUR CODE GOES HERE
+
+        // Initialize empty array list to store results in
+        ArrayList<String> result = new ArrayList<>();
+
+        // Initialize empty array list to 
+        ArrayList<Integer> processed = new ArrayList<>();
         
+        // Loop through each number in input array
+        for (int number : input) {
+            
+            // Initialize integer that adds to k given number
+            int targetVal = k - number;
+
+            // Check if target value is already in array list
+            if (processed.contains(targetVal)) {
+
+                // Initialize first number in pair by finding smaller of the two
+                int firstNumber = Math.min(number, targetVal);
+                
+                // Initialize second number in pair by finding larger of the two
+                int secondNumber = Math.max(number, targetVal);
+
+                // Initialize paired string to contain first and second numbers
+                String pairedStrings = "(" + firstNumber + ", " + secondNumber + ")";
+
+                // Avoid duplicate pairs
+                if (!result.contains(pairedStrings)) {
+                    result.add(pairedStrings);
+                }
+            }
+
+            // Continue through loop, adding current number to processed numbers list
+            processed.add(number);
+        }
+
+        // Sort results in ascending order
+        Collections.sort(result);
+
         return result;  // Make sure returned lists is sorted as indicated above
-     }
+
+     } // method pair
+
  }
