@@ -96,7 +96,7 @@
         } else {
             return maxHeap.peek();
         }
-        
+
    } // method lastBoulder
  
  
@@ -119,10 +119,32 @@
  
      public static ArrayList<String> showDuplicates(ArrayList<String> input) {
  
-         //
-         //  YOUR CODE GOES HERE
-         //
-         return new ArrayList<>();  // Make sure result is sorted in ascending order
+        //  YOUR CODE GOES HERE
+         
+        // Initialize hashMap to count number of appearances
+        HashMap<String, Integer> hashMap = new HashMap<>()         ;
+
+        // If string from input exists in map, count it. If not, default to 0
+        for (String string : input) {
+            hashMap.put(string, hashMap.getOrDefault(string, 0) + 1);
+        }
+
+        // Initialize array list to store strings that appear more than once
+        ArrayList<String> duplicates = new ArrayList<>();
+
+        // Iterate over the keys of the hashMap
+        for (String string : hashMap.keySet()) {
+
+            // If a string has more than one entry, add it into duplicate array
+            if (hashMap.get(string) > 1) {
+                duplicates.add(string);
+            }
+        }
+        
+        // Sort duplicate array alphabetically
+        Collections.sort(duplicates);
+
+        return duplicates;  // Make sure result is sorted in ascending order
  
      }
  
@@ -159,9 +181,8 @@
  
      public static ArrayList<String> pair(int[] input, int k) {
  
-         //
-         //  YOUR CODE GOES HERE
-         //
-         return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        //  YOUR CODE GOES HERE
+        
+        return result;  // Make sure returned lists is sorted as indicated above
      }
  }
